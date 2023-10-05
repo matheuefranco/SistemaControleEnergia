@@ -43,7 +43,9 @@ class Program
                 consumoDia = eletro.potencia * eletro.tempoMedioUso;
                 valorGastoDia = consumoDia * valorKw;
                 Console.WriteLine($"Consumo em KW por dia:" +
-                    $"{consumoDia}, por mês: {consumoDia*30}");
+                    $"{Math.Round(consumoDia,2)}, por mês: {Math.Round(consumoDia *30,2)}");
+                Console.WriteLine($"Valor gasto por dia: R$ {Math.Round(valorGastoDia,2)}, " +
+                    $"por mês R$ {Math.Round(valorGastoDia *30, 2)}");
             }
 
         }
@@ -91,7 +93,7 @@ class Program
         Console.WriteLine("*** Sistema de Controle de Energia C# ***");
         Console.WriteLine("1-Cadastrar");
         Console.WriteLine("2-Listar");
-        Console.WriteLine("3-Calcular custo");
+        Console.WriteLine("3-Calcular custo por eletro");
         Console.WriteLine("0-Sair");
         Console.Write("Escolha uma opção:");
         op = Convert.ToInt32(Console.ReadLine());
@@ -109,7 +111,9 @@ class Program
                     break;
                 case 2: listarEletros(vetorEletros);
                     break ;
-                case 3: //calcularCustoEletro(vetorEletros);
+                case 3: Console.Write("Eletro para cálculo:");
+                    string eletroBusca = Console.ReadLine();
+                    calcularCustoEletro(vetorEletros, eletroBusca);
                     break;
                 case 0: Console.WriteLine("Saindo");
                     salvarDados(vetorEletros, "dadosEletro.txt");
