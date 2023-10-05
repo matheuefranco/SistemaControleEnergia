@@ -26,7 +26,7 @@ class Program
         Console.WriteLine("Lista de Eletrodomésticos:");
         foreach (Eletro eletro in lista)
         {
-            Console.WriteLine($"Nome: {eletro.nome}");
+            Console.WriteLine("Nome:" + eletro.nome);
             Console.WriteLine($"Potência: {eletro.potencia} kW");
             Console.WriteLine($"Tempo Médio Ativo por Dia: {eletro.tempoMedioUso} horas");
             Console.WriteLine();
@@ -34,9 +34,19 @@ class Program
     }
     static void calcularCustoEletro(List<Eletro> vetorEletros, string nomeEletro)
     {
-        double somaDia = 0, somaMes=0, valorKw;
+        double consumoDia, valorGastoDia, valorKw;
         Console.Write("Valor do Kw em R$:");
         valorKw = Convert.ToDouble(Console.ReadLine());
+        foreach(Eletro eletro in vetorEletros)
+        {
+            if (eletro.nome.ToUpper().Equals(nomeEletro.ToUpper())){
+                consumoDia = eletro.potencia * eletro.tempoMedioUso;
+                valorGastoDia = consumoDia * valorKw;
+                Console.WriteLine($"Consumo em KW por dia:" +
+                    $"{consumoDia}, por mês: {consumoDia*30}");
+            }
+
+        }
 
     }
 
